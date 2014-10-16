@@ -12,9 +12,11 @@ class CardReader(object):
 	
 		self.tag = "" #The buffer used to store the RFID Tag
 		self.TIMEOUT = TIMEOUT #Real time allowed for the transmission
+		print("init")
 		return super().__init__()
 
 	def addBitToTag(self, gpio_id, val):
+		print("addBitToTag")
 		#Beginning of a new frame, we start the timer
 		if self.tag == "":
 			self.t = threading.Timer(self.TIMEOUT, self.processTag)
@@ -25,6 +27,7 @@ class CardReader(object):
 			self.tag += "0"
 		elif gpio_id == self.GPIO_1:
 			self.tag += "1"	
+	
 
 	def registerReader(self, edge = 'falling', pull_up_down=RPIO.PUD_UP):
 		RPIO.setup(self.GPIO_0, RPIO.IN)
@@ -35,13 +38,15 @@ class CardReader(object):
 		#Initializing timer
 		self.t = threading.Timer(0.1, self.processTag)
 		self.t.start()
-
+		print("registerReader")
 	def removeReader(self):
+		print("removeReader")
 		RPIO.del_interrupt_callback(self.GPIO_0)
 		RPIO.del_interrupt_callback(self.GPIO_1)
 
 	#Method triggered after Timer tick that prints out the tag
 	def processTag(self):
+		print("processTag")
 		if self.tag == "":
 			return
 		elif len(self.tag) < 10:
@@ -52,6 +57,7 @@ class CardReader(object):
 		self.tag = ""
 
 	def verifyParity(self, binary_string):
+		print("verifyParity")
 		first_part = binary_string[0:13]
 		second_part = binary_string[13:]
 		parts = [first_part, second_part]
@@ -70,6 +76,7 @@ class CardReader(object):
 	#Method to convert the RFID binary value into a readable integer
 	@staticmethod
 	def binaryToInt(binary_string):
+		print("binaryToInt")
 		print(binary_string)
 		binary_string = binary_string[1:-1] #Removing the first and last bit (Non-data bits)
 		print(binary_string)
