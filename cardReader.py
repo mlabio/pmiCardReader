@@ -1,6 +1,6 @@
 import RPIO
 import threading
-from .bigE import BigE
+import bigE
 
 class CardReader(object):
 	"""Class representing a reader. One object should be instantiated for each physical reader"""
@@ -55,8 +55,8 @@ class CardReader(object):
 			print("[" + self.name + "] Frame of length (" + str(len(self.tag)) + "):" + self.tag + " DROPPED")
 		elif self.verifyParity(self.tag):
 			#print("[" + self.name + "] Frame of length (" + str(len(self.tag)) + "): " + self.tag + " (" + str(CardReader.binaryToInt(self.tag)) + ") OK KOI" )
-			print(self.tag + " (" + str(CardReader.binaryToInt(self.tag)) + ") OK KOI" )
-			bigE.sendScan(str(CardReader.binaryToInt(self.tag)));
+			#print(str(CardReader.binaryToInt(self.tag)))
+			bigE.sendScan(str(CardReader.binaryToInt(self.tag)))
 		self.tag = ""
 
 	def verifyParity(self, binary_string):

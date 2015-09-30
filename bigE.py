@@ -1,10 +1,9 @@
-class BigE():
-	"""Class handles communications to other pods. """
+import requests
+import json
 
-	def __init__(self):
-		#Report state init
-		print("BigE init")
-		#return super().__init__()
+url='http://bigentrance.elasticbeanstalk.com/api/users/0000.json'
 
-	def sendScan(self, scanid):
-		print("sendScan: " + scanid)
+def sendScan(scanid):
+	print("sendScan: " + scanid)
+	r = requests.get('http://bigentrance.elasticbeanstalk.com/api/users/0000.json')
+	print(json.loads(r.text))
