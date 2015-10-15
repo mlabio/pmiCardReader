@@ -19,7 +19,7 @@ CardReader("arduino", 8, 7, TIMEOUT)
 
 def closeProgram(signal, frame):
 	""" Close fonction"""
-	print("\nResseting GPIO...", end = "")
+	#print("\nResseting GPIO...", end="")
 	RPIO.cleanup() #Reset every channel that has been set up by this program, and unexport interrupt gpio interfaces
 	print(" ok")
 	print("exiting")
