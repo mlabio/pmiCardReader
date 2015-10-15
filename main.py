@@ -13,8 +13,8 @@ TIMEOUT = FRAMETIME*(1+ALLOWANCE/100) #Real time allowed for the transmission
 
 #Creating readers
 readersList = [
-CardReader("reader", 23, 24, TIMEOUT),
-CardReader("arduino", 8, 7, TIMEOUT)
+CardReader("reader", 8, 7, TIMEOUT),
+#CardReader("arduino", 8, 7, TIMEOUT)
 ]
 
 def closeProgram(signal, frame):
