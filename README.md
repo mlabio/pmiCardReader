@@ -13,4 +13,5 @@ Python code to connect an Wiegand RFID Card Reader on _Raspberry Pi_ using the _
 ##Links
 
 * [RPIO Library](https://pypi.python.org/pypi/RPIO "Link to the RPIO Library")
+```sudo pip install RPIO```
 * [Raspberry Pi](http://www.raspberrypi.org "Link to the Raspberry Pi projet home page")
