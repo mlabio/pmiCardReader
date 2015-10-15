@@ -7,8 +7,8 @@ class CardReader(object):
 	def __init__(self, name, GPIO_0, GPIO_1, TIMEOUT):
 		#Pins used to receive 0s and 1s
 		self.name = name
-		self.GPIO_0 = GPIO_0
-		self.GPIO_1 = GPIO_1
+		self.GPIO_0 = GPIO_7
+		self.GPIO_1 = GPIO_8
 	
 		self.tag = "" #The buffer used to store the RFID Tag
 		self.TIMEOUT = TIMEOUT #Real time allowed for the transmission
