@@ -1,6 +1,6 @@
 import RPIO
 import threading
-from bigE import bigE
+from bigE import BigE
 
 class CardReader(object):
 	"""Class representing a reader. One object should be instantiated for each physical reader"""
@@ -13,7 +13,9 @@ class CardReader(object):
 	
 		self.tag = "" #The buffer used to store the RFID Tag
 		self.TIMEOUT = TIMEOUT #Real time allowed for the transmission
-		print("init")
+		#import bigE
+		bigE.init();
+		print("init CardReader")
 		return super().__init__()
 
 	def addBitToTag(self, gpio_id, val):
