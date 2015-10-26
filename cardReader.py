@@ -1,5 +1,6 @@
 import RPIO
 import threading
+from bigE import bigE
 
 class CardReader(object):
 	"""Class representing a reader. One object should be instantiated for each physical reader"""
@@ -51,8 +52,9 @@ class CardReader(object):
 		elif len(self.tag) < 10:
 			print("[" + self.name + "] Frame of length (" + str(len(self.tag)) + "):" + self.tag + " DROPPED")
 		elif self.verifyParity(self.tag):
-			print("[" + self.name + "] Frame of length (" + str(len(self.tag)) + "): " + self.tag + " (" + str(CardReader.binaryToInt(self.tag)) + ") OK KOI" )
-		
+			#print("[" + self.name + "] Frame of length (" + str(len(self.tag)) + "): " + self.tag + " (" + str(CardReader.binaryToInt(self.tag)) + ") OK KOI" )
+			print(self.tag + " (" + str(CardReader.binaryToInt(self.tag)) + ") OK KOI" )
+			bigE.sendScan(str(CardReader.binaryToInt(self.tag)));
 		self.tag = ""
 
 	def verifyParity(self, binary_string):
@@ -74,9 +76,9 @@ class CardReader(object):
 	#Method to convert the RFID binary value into a readable integer
 	@staticmethod
 	def binaryToInt(binary_string):
-		print("binaryToInt")
-		print(binary_string)
+		#print("binaryToInt")
+		#print(binary_string)
 		binary_string = binary_string[1:-1] #Removing the first and last bit (Non-data bits)
-		print(binary_string)
+		#print(binary_string)
 		result = int(binary_string, 2)
 		return result
